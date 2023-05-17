@@ -4,7 +4,8 @@ using System.Collections.Generic;
 public class OptimizationVolume : MonoBehaviour 
 {
     // List of items in the volume
-    public GameObject[] items;
+    [System.Serializable]
+    private GameObject[] items;
 
     // Whether the volume is activated
     private bool activated = false;
