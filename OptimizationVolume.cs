@@ -31,8 +31,10 @@ public class OptimizationVolume : MonoBehaviour
     private void OnTriggerEnter(Collider other) 
     {
         // If the player enters the volume and it's activated
-        if (other.CompareTag("Player") && activated)
+        if (other.CompareTag("Player"))
         {
+            if(!activated) return;
+        
             // Spawn items if enabled
             if (useSpawning)
             {
