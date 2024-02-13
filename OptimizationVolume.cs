@@ -3,12 +3,14 @@ using System.Collections;
 
 public class OptimizationVolume : MonoBehaviour
 {
+    // Can be changed to match the existing player tag
+    private readonly string playerTag = "Player";
+    
     // List of items in the volume
     public GameObject[] items;
 
     // Whether the volume is activated
     private bool activated = false;
-
 
     private void Awake()
     {
@@ -31,7 +33,7 @@ public class OptimizationVolume : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // If the player enters the volume and it's activated
-        if (other.CompareTag("Player"))
+        if (other.CompareTag(playerTag))
         {
             if (!activated) return;
 
@@ -43,7 +45,7 @@ public class OptimizationVolume : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         // If the player exits the volume
-        if (other.CompareTag("Player"))
+        if (other.CompareTag(playerTag))
         {
             // Set all items to inactive
             SetItems(false);
