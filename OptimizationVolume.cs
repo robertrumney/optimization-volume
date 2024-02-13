@@ -1,16 +1,16 @@
 using UnityEngine;
-using System.Collections.Generic;
+using System.Collections;
 
-public class OptimizationVolume : MonoBehaviour 
+public class OptimizationVolume : MonoBehaviour
 {
     // List of items in the volume
-    [System.Serializable]
-    private GameObject[] items;
+    public GameObject[] items;
 
     // Whether the volume is activated
     private bool activated = false;
 
-    private void Awake () 
+
+    private void Awake()
     {
         // Disable the mesh renderer to hide the volume in the scene
         GetComponent<MeshRenderer>().enabled = false;
@@ -28,24 +28,19 @@ public class OptimizationVolume : MonoBehaviour
         activated = true;
     }
 
-    private void OnTriggerEnter(Collider other) 
+    private void OnTriggerEnter(Collider other)
     {
         // If the player enters the volume and it's activated
         if (other.CompareTag("Player"))
         {
-            if(!activated) return;
-        
-            // Spawn items if enabled
-            if (useSpawning)
-            {
-                AutoSpawn();
-            }
+            if (!activated) return;
+
             // Set all items to active
             SetItems(true);
         }
     }
 
-    private void OnTriggerExit(Collider other) 
+    private void OnTriggerExit(Collider other)
     {
         // If the player exits the volume
         if (other.CompareTag("Player"))
